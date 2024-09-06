@@ -1,0 +1,7 @@
+aiohttp
+langchain_mongodb
+langchain_openai
+langchain
+pymongo
+openai
+json
