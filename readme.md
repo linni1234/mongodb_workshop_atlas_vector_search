@@ -7,22 +7,14 @@ This project provides a system for embedding movie documents using **Azure OpenA
 ```bash
 .
 ├── create_index.py                  # Script to create a vector search index in MongoDB Atlas
-├── dump_with_vectors/               # Contains MongoDB dumps with vector embeddings
-│   └── dump/
-│       └── sample_mflix/
-│           ├── embedded_movies.bson
-│           └── embedded_movies.metadata.json
-├── dump_without_vectors/            # Contains MongoDB dumps without vector embeddings
-│   └── dump/
-│       └── sample_mflix/
-│           ├── embedded_movies.bson
-│           └── embedded_movies.metadata.json
-├── embedd_documents.py              # Script to process and embed movie documents using Azure OpenAI
-├── query_with_langchain.py          # Script to query embedded documents using LangChain
+├── embedd_documents_azure.py        # Script to process and embed movie documents using Azure OpenAI
+├── embedd_documents_gcp.py          # Script to process and embed movie documents using Google Cloud Platform
+├── query_with_langchain_azure.py    # Script to query embedded documents using LangChain with Azure
+├── query_with_langchain_gcp.py      # Script to query embedded documents using LangChain with GCP
 ├── query.txt                        # Contains sample query vectors
 ├── requirements.txt                 # Lists Python dependencies for the project
 ├── restore.sh                       # Shell script to restore MongoDB dumps
-└── readme                           # README file for the project
+└── README.md                        # README file for the project
 ```
 
 ## Setup
@@ -39,7 +31,7 @@ cd <repository-directory>
 Make sure you have Python installed, then install the required dependencies:
 
 ```sh
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ### 3. Set environment variables
@@ -50,14 +42,13 @@ Create a `.env` file in the root directory and add the following variables:
 export MONGODB_URI="<your-mongodb-uri>"
 export first_last="<your-first-last>"
 
-For GCP:
-export GCP_PROJECT="your_project_name"
-export GCP_LOCATION="your_location_name"
-
-
-For Azure:
+#For Azure OpanAI:
 export AZURE_OPENAI_API_KEY="<your-azure-openai-api-key>"
 export AZURE_OPENAI_ENDPOINT="<your-azure-openai-endpoint>"
+
+#For GCP VertexAI:
+export GCP_PROJECT="your_project_name"
+export GCP_LOCATION="your_location_name"
 ```
 
 ## Usage
@@ -77,7 +68,11 @@ This script will restore the movie data either with or without vector embeddings
 After restoring the data, you can embed movie documents and store the embeddings in MongoDB by running:
 
 ```sh
-python embedd_documents.py
+#For Azure OpenAI:
+python3 embedd_documents_azure.py
+
+#For GCP VertexAI:
+python3 embedd_documents_gcp.py
 ```
 
 This script processes documents, generates embeddings using **Azure OpenAI**, and updates the MongoDB collection with the embeddings.
@@ -87,7 +82,7 @@ This script processes documents, generates embeddings using **Azure OpenAI**, an
 To create a vector search index in MongoDB Atlas, run:
 
 ```sh
-python create_index.py
+python3 create_index.py
 ```
 
 This script initializes the **MongoDB Atlas Vector Search** and creates an index with specified dimensions and filters.
@@ -97,7 +92,11 @@ This script initializes the **MongoDB Atlas Vector Search** and creates an index
 To query the embedded documents using **LangChain**, run:
 
 ```sh
-python query_with_langchain.py
+#For Azure OpenAI:
+python3 query_with_langchain_azure.py
+
+#For GCP VertexAI:
+python3 query_with_langchain_gcp.py
 ```
 
 This script performs vector search queries on the embedded documents stored in MongoDB.
@@ -115,18 +114,19 @@ This script performs vector search queries on the embedded documents stored in M
 
 The project requires the following Python libraries:
 
-- `aiohttp`
-- `langchain_mongodb`
-- `langchain_openai`
-- `langchain`
-- `pymongo`
-- `openai`
-- `json`
+motor
+aiohttp
+langchain
+langchain_mongodb
+langchain_openai
+langchain-google-vertexai
+pymongo
+openai
 
 Install them by running:
 
 ```sh
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ## License
