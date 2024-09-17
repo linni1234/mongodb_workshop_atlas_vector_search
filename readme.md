@@ -1,6 +1,6 @@
 # Movie Embedding and Query System
 
-This project provides a system for embedding movie documents using **Azure OpenAI** and querying them using **MongoDB Atlas Vector Search**. The system processes movie documents, generates embeddings, and stores them in a MongoDB collection. It also supports querying the embedded documents using MongoDB Atlas Vector Search.
+This project provides a system for embedding movie documents using **Azure OpenAI** or **Google VertexAI** and querying them using **MongoDB Atlas Vector Search**. The system processes movie documents, generates embeddings, and stores them in a MongoDB collection. It also supports querying the embedded documents using MongoDB Atlas Vector Search.
 
 ## Project Structure
 
@@ -42,7 +42,7 @@ Create a `.env` file in the root directory and add the following variables:
 export MONGODB_URI="<your-mongodb-uri>"
 export first_last="<your-first-last>"
 
-#For Azure OpanAI:
+#For Azure OpenAI:
 export AZURE_OPENAI_API_KEY="<your-azure-openai-api-key>"
 export AZURE_OPENAI_ENDPOINT="<your-azure-openai-endpoint>"
 
