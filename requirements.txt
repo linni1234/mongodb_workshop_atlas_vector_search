@@ -1,7 +1,8 @@
+motor
 aiohttp
+langchain
 langchain_mongodb
 langchain_openai
-langchain
+langchain-google-vertexai
 pymongo
 openai
-json

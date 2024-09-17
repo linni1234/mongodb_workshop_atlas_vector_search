@@ -17,15 +17,15 @@ MONGODB_COLLECTION = client[DB_NAME][COLLECTION_NAME]
 # Initialize the MongoDBAtlasVectorSearch object
 vectorstore = MongoDBAtlasVectorSearch(
     collection=MONGODB_COLLECTION,
-    embedding_key="azure_openai_vector",
+    embedding_key="embedding",
     index_name=ATLAS_VECTOR_SEARCH_INDEX_NAME,
     relevance_score_fn="euclidean",
-    embedding="azure_openai_vector",
+    embedding="embedding",
 )
 
 # Create the vector search index with dimensions and filters
 vectorstore.create_vector_search_index(
-    dimensions=1536,
+    dimensions=768, #1536 for Azure OpenAI
     filters=["genres", "year"],
     # update=True  # Uncomment if you want to update the index
 )

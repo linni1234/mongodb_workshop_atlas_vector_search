@@ -49,6 +49,13 @@ Create a `.env` file in the root directory and add the following variables:
 ```sh
 export MONGODB_URI="<your-mongodb-uri>"
 export first_last="<your-first-last>"
+
+For GCP:
+export GCP_PROJECT="your_project_name"
+export GCP_LOCATION="your_location_name"
+
+
+For Azure:
 export AZURE_OPENAI_API_KEY="<your-azure-openai-api-key>"
 export AZURE_OPENAI_ENDPOINT="<your-azure-openai-endpoint>"
 ```

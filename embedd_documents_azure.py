@@ -34,13 +34,13 @@ async def process_document(doc):
         doc_vector = generate_text_embedding(session, combined_text)
         if doc_vector:
             await collection.update_one(
-                {"_id": doc["_id"]}, {"$set": {"azure_openai_vector": doc_vector}}
+                {"_id": doc["_id"]}, {"$set": {"embedding": doc_vector}}
             )
             print(f"Document {doc['_id']} updated.")
 
 
 async def process_documents(batch_size=500):
-    cursor = collection.find({"azure_openai_vector": {"$exists": False}}).batch_size(
+    cursor = collection.find({"embedding": {"$exists": False}}).batch_size(
         batch_size
     )
     async for doc in cursor:
