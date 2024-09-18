@@ -46,7 +46,10 @@ export first_last="<your-first-last>"
 export AZURE_OPENAI_API_KEY="<your-azure-openai-api-key>"
 export AZURE_OPENAI_ENDPOINT="<your-azure-openai-endpoint>"
 
-#For GCP VertexAI:
+#For GCP VertexAI using GCP Service account:
+export GOOGLE_APPLICATION_CREDENTIALS="/path/to/your/file.json" 
+
+#For GCP VertexAI using Google Cloud CLI:
 export GCP_PROJECT="your_project_name"
 export GCP_LOCATION="your_location_name"
 ```

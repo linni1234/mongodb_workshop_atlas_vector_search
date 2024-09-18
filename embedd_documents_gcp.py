@@ -5,14 +5,14 @@ from langchain_google_vertexai.embeddings import VertexAIEmbeddings
 
 # Get environment variables for configuration
 first_last = os.getenv("first_last")
-gcp_project = os.getenv("GCP_PROJECT")  # Get GCP project from environment variables
-gcp_location = os.getenv("GCP_LOCATION")  # Get GCP location from environment variables
+#gcp_project = os.getenv("GCP_PROJECT")  # Get GCP project from environment variables
+#gcp_location = os.getenv("GCP_LOCATION")  # Get GCP location from environment variables
 
 # LangChain's VertexAIEmbeddings class to generate embeddings
 embedding_model = VertexAIEmbeddings(
     model_name="textembedding-gecko@003",  # Vertex AI text embedding model
-    project=gcp_project,                   # Pass the project from env variables
-    location=gcp_location                  # Pass the location from env variables
+    #project=gcp_project,                   # Pass the project from env variables
+    #location=gcp_location                  # Pass the location from env variables
 )
 
 # MongoDB Initialization
@@ -40,8 +40,8 @@ async def process_document(doc):
         print(f"Document {doc['_id']} updated.")
 
 # Process multiple documents from MongoDB
-async def process_documents(batch_size=500):
-    cursor = collection.find({"embedding": {"$exists": False}}).batch_size(batch_size)
+async def process_documents(batch_size=500,limit=100):
+    cursor = collection.find({"embedding": {"$exists": False}}).batch_size(batch_size).limit(limit)
     
     async for doc in cursor:
         await process_document(doc)

@@ -7,14 +7,14 @@ import json
 # Load environment variables
 MONGODB_URI = os.getenv("MONGODB_URI")
 first_last = os.getenv("first_last")
-gcp_project = os.getenv("GCP_PROJECT")  # Get GCP project from environment variables
-gcp_location = os.getenv("GCP_LOCATION")  # Get GCP location from environment variables
+#gcp_project = os.getenv("GCP_PROJECT")  # Get GCP project from environment variables
+#gcp_location = os.getenv("GCP_LOCATION")  # Get GCP location from environment variables
 
 # Initialize Vertex AI embeddings using LangChain's VertexAIEmbeddings class
 embedding_model = VertexAIEmbeddings(
     model_name="textembedding-gecko@003",  # The model to use for text embeddings
-    project=gcp_project,                   # Use the project from environment variables
-    location=gcp_location                  # Use the location from environment variables
+    #location=gcp_location
+    #project=gcp_project
 )
 
 # Initialize MongoDB python client using the environment variable for the URI
