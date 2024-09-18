@@ -40,7 +40,7 @@ Create a `.env` file in the root directory and add the following variables:
 
 ```sh
 export MONGODB_URI="<your-mongodb-uri>"
-export first_last="<your-first-last>"
+export first_last="<your-first-last>" #use the format first_last
 
 #For Azure OpenAI:
 export AZURE_OPENAI_API_KEY="<your-azure-openai-api-key>"
