@@ -36,8 +36,6 @@ pip3 install -r requirements.txt
 
 ### 3. Set environment variables
 
-Create a `.env` file in the root directory and add the following variables:
-
 ```sh
 export MONGODB_URI="<your-mongodb-uri>"
 export first_last="<your-first-last>" #use the format first_last
